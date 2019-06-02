@@ -99,7 +99,7 @@ int main() {
                     if(p > 0)
                     {
                         p = 0;
-                        if(f == s && !(kill(map,step, &s)) && !KillCheck(map,s))
+                        if(f == s && !(kill(map,step, &s))/* && !KillCheck(map,s)*/)
                             Step(step,map, &s);
                     }
             }

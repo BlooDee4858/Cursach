@@ -65,11 +65,11 @@ int kill(int map[8][8], int step[4], int* s) {
                     map[step[0]][step[1]] = 0;
                     map[step[0] - 1][step[1] - 1] = 0;
 
-                    if(*s == 2)
+                    if(*s == 2 && !KillCheckOne(map,step,*s))
                     {
                         *s = 1;
                     }
-                    else
+                    else if(!KillCheckOne(map,step,*s))
                         *s = 2;
                     return 1;
                 }
@@ -79,43 +79,43 @@ int kill(int map[8][8], int step[4], int* s) {
                     map[step[0]][step[1]] = 0;
                     map[step[0] - 1][step[1] + 1] = 0;
 
-                    if(*s == 2)
+                    if(*s == 2 && !KillCheckOne(map,step,*s))
                     {
                         *s = 1;
                     }
-                    else
+                    else if(!KillCheckOne(map,step,*s))
                         *s = 2;
                     return 1;
                 }
 
-            } else if(step[1] < step[3] && step[0] < step[2])//Бьёт назад влево
+            } else if(step[1] > step[3] && step[0] < step[2])//Бьёт назад влево
             {
 
-                if (map[step[0] + 1][step[1] + 1] != map[step[0]][step[1]] && map[step[0] + 1][step[1] + 1] != 0) {
-                    map[step[2]][step[3]] = map[step[0]][step[1]];
-                    map[step[0]][step[1]] = 0;
-                    map[step[0] + 1][step[1] + 1] = 0;
-
-                    if(*s == 2)
-                    {
-                        *s = 1;
-                    }
-                    else
-                        *s = 2;
-                    return 1;
-                }
-            } else if(step[1] < step[3] && step[0] < step[2])//Бьёт назад вправо
-            {
                 if (map[step[0] + 1][step[1] - 1] != map[step[0]][step[1]] && map[step[0] + 1][step[1] - 1] != 0) {
                     map[step[2]][step[3]] = map[step[0]][step[1]];
                     map[step[0]][step[1]] = 0;
                     map[step[0] + 1][step[1] - 1] = 0;
 
-                    if(*s == 2)
+                    if(*s == 2 && !KillCheckOne(map,step,*s))
                     {
                         *s = 1;
                     }
-                    else
+                    else if(!KillCheckOne(map,step,*s))
+                        *s = 2;
+                    return 1;
+                }
+            } else if(step[1] < step[3] && step[0] < step[2])//Бьёт назад вправо
+            {
+                if (map[step[0] + 1][step[1] + 1] != map[step[0]][step[1]] && map[step[0] + 1][step[1] + 1] != 0) {
+                    map[step[2]][step[3]] = map[step[0]][step[1]];
+                    map[step[0]][step[1]] = 0;
+                    map[step[0] + 1][step[1] + 1] = 0;
+
+                    if(*s == 2 && !KillCheckOne(map,step,*s))
+                    {
+                        *s = 1;
+                    }
+                    else if(!KillCheckOne(map,step,*s))
                         *s = 2;
                     return 1;
                 }
@@ -130,13 +130,13 @@ int kill(int map[8][8], int step[4], int* s) {
                     map[step[0]][step[1]] = 0;
                     map[step[0] + 1][step[1] + 1] = 0;
 
-                    if(*s == 2)
+                    if(*s == 2 && !KillCheckOne(map,step,*s))
                     {
                         *s = 1;
                     }
-                    else
+                    else if(!KillCheckOne(map,step,*s))
                         *s = 2;
-                     return 1;
+                    return 1;
                 }
             } else if(step[1] > step[3] && step[0] < step[2]){
                 if (map[step[0] + 1][step[1] - 1] != map[step[0]][step[1]] && map[step[0] + 1][step[1] - 1] != 0) {
@@ -144,11 +144,11 @@ int kill(int map[8][8], int step[4], int* s) {
                     map[step[0]][step[1]] = 0;
                     map[step[0] + 1][step[1] - 1] = 0;
 
-                    if(*s == 2)
+                    if(*s == 2 && !KillCheckOne(map,step,*s))
                     {
                         *s = 1;
                     }
-                    else
+                    else if(!KillCheckOne(map,step,*s))
                         *s = 2;
                     return 1;
                 }
@@ -160,11 +160,11 @@ int kill(int map[8][8], int step[4], int* s) {
                     map[step[0]][step[1]] = 0;
                     map[step[0] - 1][step[1] + 1] = 0;
 
-                    if(*s == 2)
+                    if(*s == 2 && !KillCheckOne(map,step,*s))
                     {
                         *s = 1;
                     }
-                    else
+                    else if(!KillCheckOne(map,step,*s))
                         *s = 2;
                     return 1;
                 }
@@ -175,11 +175,11 @@ int kill(int map[8][8], int step[4], int* s) {
                     map[step[0]][step[1]] = 0;
                     map[step[0] - 1][step[1] - 1] = 0;
 
-                    if(*s == 2)
+                    if(*s == 2 && !KillCheckOne(map,step,*s))
                     {
                         *s = 1;
                     }
-                    else
+                    else if(!KillCheckOne(map,step,*s))
                         *s = 2;
                     return 1;
                 }
@@ -218,6 +218,26 @@ int KillCheck(int map[8][8], int s)
 
         }
     }
+    return 0;
+}
+
+int KillCheckOne(int map[8][8], int step[4], int s)
+{
+    int r;
+    if(s == 1)
+        r = 2;
+    else
+        r = 1;
+
+    if(map[step[2]-1][step[3]-1] == r && map[step[2]-2][step[3]-2] == 0 && (step[2]-2 >= 0) && (step[3]-2 >= 0))
+        return 1;
+    if(map[step[2]-1][step[3]+1] == r && map[step[2]-2][step[3]+2] == 0 && (step[2]-2 >= 0) && (step[3]+2 < 7))
+        return 1;
+    if(map[step[2]+1][step[3]+1] == r && map[step[2]+2][step[3]+2] == 0 && (step[2]+2 >= 0) && (step[3]+2 >= 0))
+        return 1;
+    if(map[step[2]+1][step[3]-1] == r && map[step[2]+2][step[3]-2] == 0 && (step[2]+2 >= 0) && (step[3]-2 >= 0))
+        return 1;
+
     return 0;
 }
 
