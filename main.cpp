@@ -81,6 +81,7 @@ int main() {
             {
                 printf("Check: %d\n",KillCheck(map,s));
                 printf("Turn: %d\n",s);
+                printf("Queen: %d\n",QueenCheck(map,s));
 
                 ip = Mouse::getPosition(window).y/100;
                 jp = Mouse::getPosition(window).x/100;
@@ -99,7 +100,7 @@ int main() {
                     if(p > 0)
                     {
                         p = 0;
-                        if(f == s && !(kill(map,step, &s))/* && !KillCheck(map,s)*/)
+                        if(f == s && !(kill(map, step, &s)) && !KillCheck(map,s) && !QueenCheck(map,s))
                             Step(step,map, &s);
                     }
             }
@@ -113,6 +114,7 @@ int main() {
         //Отрисовка доски
         window.draw(desksprite);
 
+        Queen(map);
         //Цикл отрисовки шашек
         for(int i = 0; i < 8; i++)
         {
@@ -128,6 +130,18 @@ int main() {
                     blacksprite.setPosition(i*100,j*100);
                     window.draw(blacksprite);
                 }
+                if(map[j][i] == 3)
+                {
+                    whitesprite_dam.setPosition(i*100,j*100);
+                    window.draw(whitesprite_dam);
+                }
+                if(map[j][i] == 4)
+                {
+                    blacksprite_dam.setPosition(i*100,j*100);
+                    window.draw(blacksprite_dam);
+                }
+
+
             }
         }
 
