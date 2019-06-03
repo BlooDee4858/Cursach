@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include <sstream>
 
 using namespace sf;
 using namespace std;
@@ -26,5 +27,8 @@ void Queen(int map[8][8]);
 int QueenCheck(int map[8][8], int s);
 void QueenStep(int step[], int map[8][8], int* s);
 int KillerQueen(int map[8][8], int step[4], int *s);
+int WhiteCount(int map[8][8]);
+int BlackCount(int map[8][8]);
+int WinCheck(int map[8][8]);
 
 #endif //CURSACH_HEADER_H

@@ -523,6 +523,58 @@ int QueenCheck(int map[8][8], int s)
     }
     return 0;
 }
+int BlackCount(int map[8][8])
+{
+    int k = 0;
+    for(int i = 0; i < 8; i++)
+    {
+        for(int j = 0; j < 8; j++)
+        {
+            if(map[i][j] == 2 || map[i][j] == 4)
+            {
+                k++;
+            }
+        }
+    }
+    return k;
+}
+int WhiteCount(int map[8][8])
+{
+    int k = 0;
+    for(int i = 0; i < 8; i++)
+    {
+        for(int j = 0; j < 8; j++)
+        {
+            if(map[i][j] == 1 || map[i][j] == 3)
+            {
+                k++;
+            }
+        }
+    }
+    return k;
+}
+int WinCheck(int map[8][8])
+{
+    int b = 0, w = 0;
+    for(int i = 0; i < 8; i++)
+    {
+        for(int j = 0; j < 8; j++)
+        {
+            if(map[i][j] == 1 || map[i][j] == 3)
+                w++;
+            if(map[i][j] == 2 || map[i][j] == 4)
+                b++;
+        }
+    }
+    if(w == 0)
+        return 2;
+    else if(b == 0)
+        return 1;
+    else
+        return 0;
+
+}
+
 
 
 
